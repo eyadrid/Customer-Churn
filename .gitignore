@@ -1,0 +1,9 @@
+.venv/
+.DS_Store
+__pycache__/
+*.py[cod]
+*.pyo
+mlruns/
+artifacts/
+data
+mlflow.db
