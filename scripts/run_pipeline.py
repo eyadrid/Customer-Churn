@@ -5,7 +5,6 @@ import argparse
 import pandas as pd
 import mlflow
 import mlflow.sklearn
-# REMOVE: from posthog import project_root  <-- This was causing the error
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import (
     classification_report, precision_score, recall_score,
@@ -13,7 +12,6 @@ from sklearn.metrics import (
 )
 from xgboost import XGBClassifier
 
-# CORRECT DEFINITION:
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(project_root)
 
@@ -42,9 +40,7 @@ def main(args):
         print("Loading data")
         df = load_data(args.input)  
         
-        # ADD THESE LINES HERE:
         if 'TotalCharges' in df.columns:
-            # Convert spaces to NaN, then convert column to float, then fill NaN with 0
             df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce').fillna(0)
             
         print(f"Data loaded: {df.shape[0]} rows, {df.shape[1]} columns")
@@ -162,10 +158,9 @@ def main(args):
         print(f"   F1 Score: {f1:.3f} | ROC AUC: {roc_auc:.3f}")
 
         print("Saving model to MLflow...")
-        # Since you are using XGBClassifier, it's safer to use the xgboost flavor
         mlflow.xgboost.log_model(
             model, 
-            artifact_path="model" # Or use name="model" in very new MLflow versions
+            artifact_path="model" 
         )
         print("Model saved to MLflow for serving pipeline")
 
