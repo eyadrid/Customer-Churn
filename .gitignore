@@ -7,3 +7,4 @@ mlruns/
 artifacts/
 data
 mlflow.db
+!src/data
