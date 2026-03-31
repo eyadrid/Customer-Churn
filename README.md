@@ -67,7 +67,7 @@ In practice, missing a real churner is usually more expensive than targeting a l
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/customer-churn.git
+git clone https://github.com/eyadrid/Customer-Churn.git
 cd customer-churn
 ```
 
